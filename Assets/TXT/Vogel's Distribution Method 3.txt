@@ -1,0 +1,28 @@
+// Based in part on https://www.shadertoy.com/view/XtsSWM
+
+#define A 2.39996322972865332
+#define N 256.0
+#define R 0.1
+#define PI 3.14159265359    
+
+void mainImage(out vec4 o, in vec2 i) {
+    vec2 S=iResolution.xy;
+    i = (i+i-S)/S.y;
+    
+    float w = iGlobalTime * 4.0;
+    i*=dot(i,i+vec2(cos(w),sin(w))*0.1); //warp
+    
+    float r = max(0.1,length(i)-R);
+    float v = floor(r*r*N-w);
+      
+    float c = 1.;
+    for(float k = 0.; k < 40.; k++) {
+        vec2 p = sqrt((v+w)/N)*cos(v*A+vec2(0., PI/2.))-i;
+        c = min(c, dot(p,p));
+        v++;
+    }
+    
+    float g = max(0.,1.-sqrt(c)/R)*max(0.,1.-r);
+    o = vec4(g, g*g, g*0.3, 1.);
+}
+

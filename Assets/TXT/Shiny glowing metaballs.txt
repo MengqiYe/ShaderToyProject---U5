@@ -1,0 +1,269 @@
+#define TMAX 20.0
+#define pi 3.14159265
+
+#define WISP_GLOW_R 0.3
+#define GLOW_COLOR (vec3(0.2, 0.3, 0.5))
+#define DIFFUSE_COLOR vec3(0.1, 0.4, 0.8)
+#define RF0 vec3(0.3, 0.3, 0.3)
+#define FREH_MULT 1.0
+
+//Bump mapping intensity
+#define BUMP_STRENGTH 0.02
+#define BUMP_WIDTH 0.4
+
+vec3 rot_y(vec3 v, float phi)
+{
+    return vec3(cos(phi)*v.x+sin(phi)*v.z, v.y, -sin(phi)*v.x+cos(phi)*v.z);
+}
+
+vec2 rot2d(vec2 v, float phi)
+{
+    return vec2(cos(phi)*v.x + sin(phi)*v.y, -sin(phi)*v.x + cos(phi)*v.y);
+}
+
+float time()
+{
+    return iGlobalTime;
+}
+
+float smin(float a, float b, float blendRadius)
+{
+	float c = clamp(0.5 + (b - a) * (0.5 / blendRadius), 0.0, 1.0);
+	return mix(b, a, c) - blendRadius * c * (1.0 - c);
+}
+
+struct wisp_opts
+{
+    float grow_r;
+    bool neg;
+};
+
+float sphere(vec3 p, float r, wisp_opts opts)
+{
+    float d = length(p) - (r+opts.grow_r);
+    return d;
+}
+
+#define N 4
+
+float wisp_gen(vec3 p, wisp_opts opts)
+{
+    float blend_r = 0.5;
+
+    float t = time();
+    vec3 c[N];
+    c[0] = 1.0*vec3(0.2, 0.4*sin(4.0*t), 0.0);
+    c[1] = 1.0*vec3(-0.2, -0.4*sin(4.0*t), 0.0);
+    c[2] = 1.25*vec3(0.4*cos(4.0*t), 0.2, 0.0);
+    c[3] = 1.25*vec3(-0.4*cos(4.0*t), -0.2, 0.0);
+    
+    /*
+    c[4] = 1.5*vec3(0.4*sin(8.0*t), 0.0, 0.4*cos(8.0*t));
+    c[5] = rot_y(c[4], pi*0.25);
+    c[6] = rot_y(c[4], pi*0.5);
+    c[7] = rot_y(c[4], pi*0.75);
+    
+    float AY = 0.4;
+    float P = 0.1;
+    c[4].y = AY*sin(2.0*(t));
+    c[5].y = AY*sin(2.0*(t + P));
+    c[6].y = AY*sin(2.0*(t + 2.0*P));
+    c[7].y = AY*sin(2.0*(t + 3.0*P));
+	*/
+
+    float r[N];
+    r[0] = r[1] = r[2] = r[3] = 0.14;
+    /*
+    r[4] = r[5] = r[6] = r[7] = 0.001;
+	*/
+    
+    float d =   sphere(p-c[0], r[0], opts);
+    for (int i = 1; i < N; ++i) {
+    	d = smin(d, sphere(p-c[i], r[i], opts), blend_r);
+    }
+    if (opts.neg)
+        d = -d;
+    return d;
+}
+
+float wisp(vec3 p)
+{
+    wisp_opts opts;
+    opts.grow_r = 0.0;
+    opts.neg = false;
+    return wisp_gen(p, opts);
+}
+
+vec3 wisp_normal(vec3 p)
+{
+    vec3 eps = vec3(0.001, 0.0, 0.0);
+    return normalize(vec3(
+        wisp(p+eps.xyy) - wisp(p-eps.xyy),
+        wisp(p+eps.yxy) - wisp(p-eps.yxy),
+        wisp(p+eps.yyx) - wisp(p-eps.yyx)));
+}
+
+vec3 normal_sobel(vec3 x)
+{
+    float delta = 0.1;
+    vec3 res = vec3(0.0, 0.0, 0.0);
+    for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+            float a = float(j==1) + float(k==1) + 2.0;
+            res.x +=  a * wisp(x + delta*vec3( 1,j-1,k-1));
+            res.x += -a * wisp(x + delta*vec3(-1,j-1,k-1));
+            res.y +=  a * wisp(x + delta*vec3(j-1, 1,k-1));
+            res.y += -a * wisp(x + delta*vec3(j-1,-1,k-1));
+            res.z +=  a * wisp(x + delta*vec3(j-1,k-1, 1));
+            res.z += -a * wisp(x + delta*vec3(j-1,k-1,-1));
+        }
+    }
+    return res/length(res);
+}
+
+float cast_ray_gen(vec3 p, vec3 v, wisp_opts opts)
+{
+    float eps = 0.01;
+    float tmin = 0.0;
+    
+    float t = tmin;
+    float last_t = t;
+    float last_d = 0.0;
+    for (int i = 0; i < 120; i++) {
+        float d = wisp_gen(p + t*v, opts);
+        
+        if (last_t+last_d-(t-d) > 0.0) {
+            t = last_t + last_d;
+            d = wisp_gen(p + t*v, opts);
+        }
+		
+        if (d<eps || t>TMAX) break;
+
+        last_t = t;
+        last_d = d;
+        t += 1.2*d;
+    }
+    return t;
+}
+
+float cast_ray(vec3 p, vec3 v)
+{
+    wisp_opts opts;
+    opts.grow_r = 0.0;
+    opts.neg = false;
+    return cast_ray_gen(p, v, opts);
+}
+
+
+float cast_ray_glow(vec3 p, vec3 v, float tmax)
+{
+    tmax = min(tmax, TMAX);
+    float eps = 0.1;
+    
+    wisp_opts opts;
+    opts.grow_r = WISP_GLOW_R;
+    
+    float res = 0.0;
+    float t = 0.0;
+    for (int i = 0; i < 10; ++i) {
+        opts.neg = false;
+        float t_front = cast_ray_gen(p+t*v, v, opts);
+        t += t_front;
+        if (t > tmax) break;
+        
+        float t_enter = t;
+        opts.neg = true;
+        t += eps;
+        float thickness = cast_ray_gen(p+t*v, v, opts);
+        thickness = min(thickness, tmax-t);
+        t += thickness;
+        float d = 0.0;
+        for (float f = 0.25; f < 1.0; f += 0.25)
+            d += wisp(p+(f*t_enter+(1.0-f)*t)*v);
+        d /= 4.0;
+        float density = 1.0 - smoothstep(-0.0, WISP_GLOW_R, d);
+        density = pow(density, 1.5);
+        res += (thickness+eps)*density;
+        t += eps;
+        if (t > tmax) break;
+	}
+    return res;
+}
+
+//From TekF (https://www.shadertoy.com/view/ltXGWS)
+float cells(in vec3 p)
+{
+    p = fract(p/2.0)*2.0;
+    p = min(p, 2.0-p);
+    return 1.-min(length(p),length(p-1.0));
+}
+
+float btex(in vec3 p)
+{
+    return cells(p*15.0);
+}
+
+//From ChristinaCoffin (https://www.shadertoy.com/view/ll23Rd)
+vec3 bump(in vec3 p, in vec3 n, in float ds)
+{
+    vec2 e = vec2(BUMP_WIDTH*sqrt(ds)*0.5, 0);
+    float n0 = btex(p);
+    vec3 d = vec3(btex(p+e.xyy)-n0, btex(p+e.yxy)-n0, btex(p+e.yyx)-n0)/e.x;
+    vec3 tgd = d - n*dot(n ,d);
+    n = normalize(n-tgd*BUMP_STRENGTH*2./(ds));
+    return n;
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    float f = 0.35;
+	vec2 uv = (fragCoord.xy - 0.5*iResolution.xy) / iResolution.x;
+    vec2 c = vec2(0.0, 0.0);
+    
+    vec3 ray = vec3(uv - c, f);
+    normalize(ray);
+    
+    float T = time();
+    float phi = 0.3 * T;
+    ray = rot_y(ray, phi);
+    vec3 cam = vec3(0.0, 0.0, 0.0);
+    cam = rot_y(vec3(0.0, 0.0, -1.5), phi);
+	
+    vec3 col = vec3(0.0, 0.0, 0.0);
+    vec3 col_bg = textureCube(iChannel0, ray).xyz;
+
+    float tmax = 20.0;
+    
+    float t = cast_ray(cam, ray);
+    
+    vec3 p = cam + t*ray;
+    float ccos = 0.0;
+    if (t <= TMAX) {
+        vec3 n = wisp_normal(p);
+        
+        n = bump(p, n, distance(cam, p));
+        
+        vec3 rr = reflect(ray, n);
+        vec3 irrd = textureCube(iChannel1, n).xyz;
+        vec3 refl = textureCube(iChannel0, rr).xyz;
+        ccos = max(0.0, dot(-ray, n));
+        
+        float sch = pow(1.0-ccos, 5.0);
+        vec3 freh = RF0 + sch*(vec3(1.0,1.0,1.0)-RF0);
+        
+        col += mix(DIFFUSE_COLOR*irrd, refl, FREH_MULT*freh);
+    
+        // fake anti-aliasing
+		col = mix(col_bg+GLOW_COLOR, col, smoothstep(0.0, 1e-1, ccos));
+    } else {
+        col = col_bg;
+    }
+    
+    vec3 glow = cast_ray_glow(cam, ray, t) * GLOW_COLOR;
+
+    col += glow;
+    
+    col = pow(1.2*col, vec3(0.8,0.9,1.0));
+    
+	fragColor = vec4(col,1.0);
+}
