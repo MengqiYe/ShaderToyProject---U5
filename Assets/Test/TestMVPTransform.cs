@@ -28,7 +28,7 @@ public class TestMVPTransform : MonoBehaviour {
 
 
 		Matrix4x4 mvp = Camera.main.projectionMatrix * Camera.main.worldToCameraMatrix * transform.localToWorldMatrix * sm;
-		renderer.material.SetMatrix("mvp",mvp);
-		renderer.material.SetMatrix("sm",sm);
+		GetComponent<Renderer>().material.SetMatrix("mvp",mvp);
+		GetComponent<Renderer>().material.SetMatrix("sm",sm);
 	}
 }

@@ -12,7 +12,7 @@ public class TestVertex : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		dis = Mathf.Sin (Time.realtimeSinceStartup);
-		renderer.material.SetFloat ("dis", dis);
-		renderer.material.SetFloat ("r",r);
+		GetComponent<Renderer>().material.SetFloat ("dis", dis);
+		GetComponent<Renderer>().material.SetFloat ("r",r);
 	}
 }
