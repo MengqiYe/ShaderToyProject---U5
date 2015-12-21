@@ -30,7 +30,22 @@
 				
 				
 				float ndotl = saturate(dot(N,L)*2);
-				o.col = _LightColor0*ndotl;				
+				o.col = _LightColor0*ndotl;			
+				
+				float3 wpos = mul(_Object2World,v.vertex).xyz;
+				o.col.rgb += Shade4PointLights(
+					unity_4LightPosX0,
+					unity_4LightPosY0,
+					unity_4LightPosZ0,
+					unity_LightColor[0].rgb,
+					unity_LightColor[1].rgb,
+					unity_LightColor[2].rgb,
+					unity_LightColor[3].rgb,
+					unity_4LightAtten0,
+					wpos,
+					N
+				);
+					
 				return o;
 			}
 			fixed4 frag(v2f IN):COLOR

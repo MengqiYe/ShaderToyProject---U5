@@ -1,6 +1,6 @@
 ﻿Shader "Custom/TestReflect" {
-	Properties {
-		_MainTex ("Base (RGB)", 2D) = "white" {}
+	Property {
+		_SpectularColor{"Specular",color}=float4(1,1,1,1)
 	}
 	SubShader {
 		Pass{
@@ -11,7 +11,8 @@
 			#pragma fragment frag
 			#include"unitycg.cginc"
 			#include"lighting.cginc"
-			;
+			
+			float4 _SpecularColor;
 			struct v2f {
 				float4 pos : POSITION;
 				float4 col : COLOR;
@@ -31,9 +32,13 @@
 				N = normalize(N);
 				//L = mul(_World2Object,float4(L,0)).xyz;
 				
-				
+				//Diffuse Color
 				float ndotl = saturate(dot(N,L)*2);
-				o.col = _LightColor0*ndotl;				
+				o.col = _LightColor0*ndotl;			
+
+				//Specular Color
+				 
+					
 				return o;
 			}
 			fixed4 frag(v2f IN):COLOR
@@ -45,3 +50,4 @@
 	} 
 	FallBack "Diffuse"
 }
+
