@@ -1,6 +1,6 @@
 ﻿Shader "Custom/TestReflect" {
-	Property {
-		_SpectularColor{"Specular",color}=float4(1,1,1,1)
+	Properties {
+		_SpectularColor("Specular",color)=(1,1,1,1)
 	}
 	SubShader {
 		Pass{
