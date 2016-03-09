@@ -1,0 +1,40 @@
+fileFormatVersion: 2
+guid: 5bbdcbf0b0e6f8142a5928e5295c1150
+labels:
+- Customize
+- RotateUV
+- ScrollUV
+- ShadowColor
+- UNLIT
+- UNOShader
+- Shader
+- Mobile
+- Scroll
+- Rotate
+- UV
+- Rim
+- Color
+- Diffuse
+- Fresnel
+- custom
+- shadow
+- emission
+- outline
+timeCreated: 1428565328
+licenseType: Store
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 1
+      settings:
+        DefaultValueInitialized: true
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

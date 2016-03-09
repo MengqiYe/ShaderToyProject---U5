@@ -24,13 +24,6 @@ Shader "Hidden/WallVisionOutlineCombine" {
 	uniform sampler2D _MainTex;
 	uniform sampler2D _Silhouette;
 	uniform sampler2D _Occluder;
-	uniform sampler2D _PatternTex;
-	uniform sampler2D _RampTex;
-	uniform float _GlowStrength;
-	uniform float _PatternScale;
-	uniform float _PatternWeight;
-	uniform half4 _Color;
-	uniform float _Aspect;
 	
 	sampler2D _CameraDepthNormalsTexture;
 		
@@ -47,14 +40,13 @@ Shader "Hidden/WallVisionOutlineCombine" {
 	
 	half4 frag(v2f i) : COLOR 
 	{	
-		float outlineDepth, sceneDepth;
-		float3 outlineNorm, sceneNorm;
+		float outlineDepth, playerDepth, sceneDepth;
+		float3 outlineNorm, playerNorm, sceneNorm;
 		
 		DecodeDepthNormal(tex2D(_Silhouette, i.uv), outlineDepth, outlineNorm);
 		DecodeDepthNormal(tex2D(_Occluder, i.uv), sceneDepth, sceneNorm);
 		
 		float4 scene = tex2D(_MainTex, i.uv);
-		half4 pattern = tex2D(_PatternTex, float2(i.uv.x/_PatternScale, i.uv.y/(_PatternScale*_Aspect)));
 		if (sceneDepth > 0 && outlineDepth > 0 && outlineDepth > sceneDepth) {
 			//float factor = pow(1-dot(float3(0,0,1),outlineNorm), 3);
 			//float factor = 1-dot(float3(0,0,1),outlineNorm);
