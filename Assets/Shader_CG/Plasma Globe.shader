@@ -55,7 +55,7 @@
         //Plasma Globe by nimitz (twitter: @stormoid)
 
 		//looks best with around 25 rays
-		#define NUM_RAYS 13.
+		#define NUM_RAYS 5
 		
 		#define VOLUMETRIC_STEPS 19
 		
@@ -100,7 +100,7 @@
 				p = mix(bp,p,0.6);
 				z *= 2.;
 				p *= 2.01;
-		        p*= m3;
+		        p = mul(m3,p);
 			}
 			return rz;	
 		}
@@ -132,16 +132,16 @@
 		{
 		    vec3 en = vec3(0.,0.,1.);
 		    float sns2 = sins(d+i*0.5)*0.22;
-		    float sns = sins(d+i*.6)*0.21;
-		    en.xz *= mm2((hash(i*10.569)-.5)*6.2+sns2);
-		    en.xy *= mm2((hash(i*4.732)-.5)*6.2+sns);
+		    float sns = sins(d+i*0.6)*0.21;
+		    en.xz = mul(mm2((hash(i*10.569)-.5)*6.2+sns2),en.xz);
+		    en.xy = mul(mm2((hash(i*4.732)-.5)*6.2+sns),en.xy);
 		    return en;
 		}
 		
 		vec2 map(vec3 p, float i)
 		{
 			float lp = length(p);
-		    vec3 bg = vec3(0.);   
+		    vec3 bg = vec3(0,0,0);
 		    vec3 en = path(i,lp);
 		    
 		    float ins = smoothstep(0.11,.46,lp);
@@ -172,8 +172,8 @@
 		vec3 vmarch(in vec3 ro, in vec3 rd, in float j, in vec3 orig)
 		{   
 		    vec3 p = ro;
-		    vec2 r = vec2(0.);
-		    vec3 sum = vec3(0);
+		    vec2 r = vec2(0,0);
+		    vec3 sum = vec3(0,0,0);
 		    float w = 0.;
 		    for( int i=0; i<VOLUMETRIC_STEPS; i++ )
 		    {
@@ -197,60 +197,63 @@
 		    float b = dot(oc, rd);
 		    float c = dot(oc,oc) - 1.;
 		    float h = b*b - c;
-		    if(h <0.0) return vec2(-1.);
+		    if(h <0.0) return vec2(-1.,-1.);
 		    else return vec2((-b - sqrt(h)), (-b + sqrt(h)));
 		}
 		
-		vec2 mainImage(in vec2 fragCoord )
+		vec4 mainImage(in vec2 fragCoord )
 		{	
 			vec2 p = fragCoord.xy/iResolution.xy-0.5;
 			p.x*=iResolution.x/iResolution.y;
 			vec2 um = iMouse.xy / iResolution.xy-.5;
-		    
+			
 			//camera
 			vec3 ro = vec3(0.,0.,5.);
-		    vec3 rd = normalize(vec3(p*.7,-1.5));
-		    mat2 mx = mm2(time*.4+um.x*6.);
-		    mat2 my = mm2(time*0.3+um.y*6.); 
-		    ro.xz *= mx;rd.xz *= mx;
-		    ro.xy *= my;rd.xy *= my;
-		    
-		    vec3 bro = ro;
-		    vec3 brd = rd;
+			vec3 rd = normalize(vec3(p*.7,-1.5));
+			mat2 mx = mm2(time*.4+um.x*6.);
+			mat2 my = mm2(time*0.3+um.y*6.); 
+			ro.xz = mul(mx,ro.xz);
+			rd.xz = mul(mx,rd.xz);
+			ro.xy = mul(my,ro.xy);
+			rd.xy = mul(my,rd.xy);
 			
-		    vec3 col = vec3(0.0125,0.,0.025);
-		    #if 1
-		    for (float j = 1.;j<NUM_RAYS+1.;j++)
-		    {
-		        ro = bro;
-		        rd = brd;
-		        mat2 mm = mm2((time*0.1+((j+1.)*5.1))*j*0.25);
-		        ro.xy *= mm;rd.xy *= mm;
-		        ro.xz *= mm;rd.xz *= mm;
-		        float rz = march(ro,rd,2.5,FAR,j);
+			vec3 bro = ro;
+			vec3 brd = rd;
+			
+			vec3 col = vec3(0.0125,0.,0.025);
+			#if 1
+			for (fixed j = 1;j<6;j++)
+			{
+			    ro = bro;
+			    rd = brd;
+			    mat2 mm = mm2((time*0.1+((j+1.)*5.1))*j*0.25);
+			    ro.xy = mul(mm,ro.xy);
+				rd.xy = mul(mm,rd.xy);
+			    ro.xz = mul(mm,ro.xz);
+				rd.xz = mul(mm,rd.xz);
+			    float rz = march(ro,rd,2.5,FAR,j);
 				if ( rz >= FAR)continue;
-		    	vec3 pos = ro+rz*rd;
-		    	col = max(col,vmarch(pos,rd,j, bro));
-		    }
-		    #endif
-		    
-		    ro = bro;
-		    rd = brd;
-		    vec2 sph = iSphere2(ro,rd);
-		    
-		    if (sph.x > 0.)
-		    {
-		        vec3 pos = ro+rd*sph.x;
-		        vec3 pos2 = ro+rd*sph.y;
-		        vec3 rf = reflect( rd, pos );
-		        vec3 rf2 = reflect( rd, pos2 );
-		        float nz = (-log(abs(flow(rf*1.2,time)-.01)));
-		        float nz2 = (-log(abs(flow(rf2*1.2,-time)-.01)));
-		        col += (0.1*nz*nz* vec3(0.12,0.12,.5) + 0.05*nz2*nz2*vec3(0.55,0.2,.55))*0.8;
-		    }
-		    
-			fragColor = vec4(col*1.3, 1.0);
-			return fragColor;
+				vec3 pos = ro+rz*rd;
+				col = max(col,vmarch(pos,rd,j, bro));
+			}
+			#endif
+			
+			ro = bro;
+			rd = brd;
+			vec2 sph = iSphere2(ro,rd);
+			
+			if (sph.x > 0.)
+			{
+			    vec3 pos = ro+rd*sph.x;
+			    vec3 pos2 = ro+rd*sph.y;
+			    vec3 rf = reflect( rd, pos );
+			    vec3 rf2 = reflect( rd, pos2 );
+			    float nz = (-log(abs(flow(rf*1.2,time)-.01)));
+			    float nz2 = (-log(abs(flow(rf2*1.2,-time)-.01)));
+			    col += (0.1*nz*nz* vec3(0.12,0.12,.5) + 0.05*nz2*nz2*vec3(0.55,0.2,.55))*0.8;
+			}
+			
+			return vec4(col*1.3, 1.0);
 		}
 
     ENDCG    
