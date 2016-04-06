@@ -52,11 +52,6 @@
 			return mainImage(gl_FragCoord);
 		}
 		
-		
-		vec4 mainImage(vec2 fragCoord) {
-			return vec4(1,1,1,1);
-		}
-		
 	ENDCG
 	
 	SubShader {

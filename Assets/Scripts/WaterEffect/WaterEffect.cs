@@ -11,7 +11,6 @@ public class WaterEffect : MonoBehaviour
 
 	private float[,] waveA;
 	private float[,] waveB;
-
 	private Texture2D tex_uv;
 
 	// Use this for initialization
