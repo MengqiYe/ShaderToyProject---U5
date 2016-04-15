@@ -20,7 +20,15 @@
 			v2f vert(appdata_base v)
 			{
 				v2f o;
-				o.pos = mul(mul(UNITY_MATRIX_MVP,sm),v.vertex);
+				float4x4 m = {
+					2, 0, 0, 0,
+					0, 2, 0, 0,
+					0, 0, 2, 0,
+					0, 0, 0, 1
+				};
+				//o.pos = mul(mul(UNITY_MATRIX_MVP,sm),v.vertex);
+				v.vertex.xyz = v.vertex.xyz * 2;
+				o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
 				return o;
 			}
 			fixed4 frag():COLOR
