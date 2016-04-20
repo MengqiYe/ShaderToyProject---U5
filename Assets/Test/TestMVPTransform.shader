@@ -13,6 +13,8 @@
 			
 			float4x4 mvp;
 			float4x4 sm;
+			fixed4 array[4];
+			half redPass;
 			struct v2f {
 				float4 pos : POSITION;
 			};
@@ -33,7 +35,8 @@
 			}
 			fixed4 frag():COLOR
 			{
-				return fixed4(.5,1,1,1);
+				//return array[2];
+				return fixed4((redPass-0.1)*100000000, 0, 0, 1);
 			}				
 			ENDCG
 		} 

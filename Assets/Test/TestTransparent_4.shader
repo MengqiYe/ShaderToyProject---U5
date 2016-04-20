@@ -1,4 +1,4 @@
-﻿Shader "Unlit/TestTransparent_3"
+﻿Shader "Unlit/TestTransparent_4"
 {
 	Properties
 	{
