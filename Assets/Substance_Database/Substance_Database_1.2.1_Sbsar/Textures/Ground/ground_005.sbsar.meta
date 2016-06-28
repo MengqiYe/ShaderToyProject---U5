@@ -6,7 +6,8 @@ SubstanceImporter:
   - serializedVersion: 16
     name: ground_005
     prototypeName: ground_005
-    shader: {instanceID: 0}
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 5
@@ -48,21 +49,21 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Normal
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Emboss
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Light_Angle
       value:
-        scalar[0]: .125
+        scalar[0]: 0.125
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -76,14 +77,14 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Saturation
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Luminosity
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -132,7 +133,7 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Water_Refraction
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -174,38 +175,38 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Sand_Color
       value:
-        scalar[0]: .823499024
-        scalar[1]: .674005985
-        scalar[2]: .494102001
+        scalar[0]: 0.823499
+        scalar[1]: 0.674006
+        scalar[2]: 0.494102
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Pebbles_1_Color
       value:
-        scalar[0]: .635203004
-        scalar[1]: .576394022
-        scalar[2]: .541100025
+        scalar[0]: 0.635203
+        scalar[1]: 0.576394
+        scalar[2]: 0.5411
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Pebbles_2_Color
       value:
-        scalar[0]: .925399005
-        scalar[1]: .897993028
-        scalar[2]: .886197984
+        scalar[0]: 0.925399
+        scalar[1]: 0.897993
+        scalar[2]: 0.886198
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Pebbles_3_Color
       value:
-        scalar[0]: .603905976
-        scalar[1]: .474494994
-        scalar[2]: .400000006
+        scalar[0]: 0.603906
+        scalar[1]: 0.474495
+        scalar[2]: 0.4
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Water_Color
       value:
-        scalar[0]: .500007987
-        scalar[1]: .500007987
-        scalar[2]: .500007987
-        scalar[3]: .500007987
+        scalar[0]: 0.500008
+        scalar[1]: 0.500008
+        scalar[2]: 0.500008
+        scalar[3]: 0.500008
         texture: {instanceID: 0}
     materialInformation:
       serializedVersion: 5
@@ -216,9 +217,128 @@ SubstanceImporter:
       animationUpdateRate: 0
     materialProperties:
       serializedVersion: 2
-      texEnvs: {}
-      floats: {}
-      colors: {}
+      texEnvs:
+        data:
+          first:
+            name: _MainTex
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _BumpMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailNormalMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _EmissionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _ParallaxMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _OcclusionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailMask
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailAlbedoMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _MetallicGlossMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+      floats:
+        data:
+          first:
+            name: _SrcBlend
+          second: 1
+        data:
+          first:
+            name: _DstBlend
+          second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: 0.5
+        data:
+          first:
+            name: _Parallax
+          second: 0.02
+        data:
+          first:
+            name: _ZWrite
+          second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
+        data:
+          first:
+            name: _BumpScale
+          second: 1
+        data:
+          first:
+            name: _OcclusionStrength
+          second: 1
+        data:
+          first:
+            name: _DetailNormalMapScale
+          second: 1
+        data:
+          first:
+            name: _UVSec
+          second: 0
+        data:
+          first:
+            name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
+          second: 0
+      colors:
+        data:
+          first:
+            name: _EmissionColor
+          second: {r: 0, g: 0, b: 0, a: 1}
+        data:
+          first:
+            name: _Color
+          second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
     - name: ground_005_Diffuse
       alphaSource: 5
@@ -235,7 +355,24 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    textureAssignments: []
+    - name: ground_005_Height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 3863254149
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 3863252645
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 3863252829
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

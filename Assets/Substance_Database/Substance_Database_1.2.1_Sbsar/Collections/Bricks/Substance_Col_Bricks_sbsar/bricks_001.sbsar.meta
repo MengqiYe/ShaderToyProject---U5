@@ -6,7 +6,8 @@ SubstanceImporter:
   - serializedVersion: 16
     name: bricks_001
     prototypeName: bricks_001
-    shader: {instanceID: 0}
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 5
@@ -48,21 +49,21 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Normal
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Emboss
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Light_Angle
       value:
-        scalar[0]: .125
+        scalar[0]: 0.125
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -76,14 +77,14 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Saturation
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Luminosity
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -118,7 +119,7 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Bricks_Balance
       value:
-        scalar[0]: .349999994
+        scalar[0]: 0.35
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -132,23 +133,23 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Bricks_01_Color
       value:
-        scalar[0]: .784300029
-        scalar[1]: .537199974
-        scalar[2]: .360700011
+        scalar[0]: 0.7843
+        scalar[1]: 0.5372
+        scalar[2]: 0.3607
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Bricks_02_Color
       value:
-        scalar[0]: .5176
-        scalar[1]: .290100008
-        scalar[2]: .200000003
+        scalar[0]: 0.5176
+        scalar[1]: 0.2901
+        scalar[2]: 0.2
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Concrete_Color
       value:
-        scalar[0]: .682299972
-        scalar[1]: .619599998
-        scalar[2]: .549600005
+        scalar[0]: 0.6823
+        scalar[1]: 0.6196
+        scalar[2]: 0.5496
         scalar[3]: 0
         texture: {instanceID: 0}
     materialInformation:
@@ -160,9 +161,128 @@ SubstanceImporter:
       animationUpdateRate: 0
     materialProperties:
       serializedVersion: 2
-      texEnvs: {}
-      floats: {}
-      colors: {}
+      texEnvs:
+        data:
+          first:
+            name: _MainTex
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _BumpMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailNormalMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _EmissionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _ParallaxMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _OcclusionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailMask
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailAlbedoMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _MetallicGlossMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+      floats:
+        data:
+          first:
+            name: _SrcBlend
+          second: 1
+        data:
+          first:
+            name: _DstBlend
+          second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: 0.5
+        data:
+          first:
+            name: _Parallax
+          second: 0.02
+        data:
+          first:
+            name: _ZWrite
+          second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
+        data:
+          first:
+            name: _BumpScale
+          second: 1
+        data:
+          first:
+            name: _OcclusionStrength
+          second: 1
+        data:
+          first:
+            name: _DetailNormalMapScale
+          second: 1
+        data:
+          first:
+            name: _UVSec
+          second: 0
+        data:
+          first:
+            name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
+          second: 0
+      colors:
+        data:
+          first:
+            name: _EmissionColor
+          second: {r: 0, g: 0, b: 0, a: 1}
+        data:
+          first:
+            name: _Color
+          second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
     - name: bricks_001_Diffuse
       alphaSource: 5
@@ -179,7 +299,24 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    textureAssignments: []
+    - name: bricks_001_Height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 2604309561
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 2604303897
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 2604304353
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

@@ -6,7 +6,8 @@ SubstanceImporter:
   - serializedVersion: 16
     name: enveloppe_001
     prototypeName: enveloppe_001
-    shader: {instanceID: 0}
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 5
@@ -48,21 +49,21 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Normal
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Emboss
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Light_Angle
       value:
-        scalar[0]: .125
+        scalar[0]: 0.125
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -76,14 +77,14 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Saturation
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Luminosity
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -132,8 +133,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Stamp_1_Position
       value:
-        scalar[0]: .920000017
-        scalar[1]: .439999998
+        scalar[0]: 0.92
+        scalar[1]: 0.44
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -146,8 +147,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Stamp_2_Position
       value:
-        scalar[0]: .850000024
-        scalar[1]: .439999998
+        scalar[0]: 0.85
+        scalar[1]: 0.44
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -160,8 +161,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Stamp_3_Position
       value:
-        scalar[0]: .77700001
-        scalar[1]: .439999998
+        scalar[0]: 0.777
+        scalar[1]: 0.44
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -174,8 +175,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Ink_Pad_1_Position
       value:
-        scalar[0]: .899999976
-        scalar[1]: .449999988
+        scalar[0]: 0.9
+        scalar[1]: 0.45
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -188,8 +189,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Ink_Pad_2_Position
       value:
-        scalar[0]: .829999983
-        scalar[1]: .460000008
+        scalar[0]: 0.83
+        scalar[1]: 0.46
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -202,8 +203,8 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Ink_Pad_3_Position
       value:
-        scalar[0]: .779999971
-        scalar[1]: .444999993
+        scalar[0]: 0.78
+        scalar[1]: 0.445
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
@@ -216,37 +217,37 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Paper_Color
       value:
-        scalar[0]: .619599998
-        scalar[1]: .458799988
-        scalar[2]: .231399998
+        scalar[0]: 0.6196
+        scalar[1]: 0.4588
+        scalar[2]: 0.2314
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Envelope_Frame_Color
       value:
         scalar[0]: 0
-        scalar[1]: .117600001
-        scalar[2]: .650900006
+        scalar[1]: 0.1176
+        scalar[2]: 0.6509
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Stamp_1_Color
       value:
-        scalar[0]: .729399979
-        scalar[1]: .541199982
-        scalar[2]: .149000004
+        scalar[0]: 0.7294
+        scalar[1]: 0.5412
+        scalar[2]: 0.149
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Stamp_2_Color
       value:
-        scalar[0]: .749000013
-        scalar[1]: .1373
-        scalar[2]: .156900004
+        scalar[0]: 0.749
+        scalar[1]: 0.1373
+        scalar[2]: 0.1569
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Stamp_3_Color
       value:
-        scalar[0]: .294099987
-        scalar[1]: .141100004
-        scalar[2]: .635299981
+        scalar[0]: 0.2941
+        scalar[1]: 0.1411
+        scalar[2]: 0.6353
         scalar[3]: 0
         texture: {instanceID: 0}
     materialInformation:
@@ -258,9 +259,128 @@ SubstanceImporter:
       animationUpdateRate: 0
     materialProperties:
       serializedVersion: 2
-      texEnvs: {}
-      floats: {}
-      colors: {}
+      texEnvs:
+        data:
+          first:
+            name: _MainTex
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _BumpMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailNormalMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _EmissionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _ParallaxMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _OcclusionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailMask
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailAlbedoMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _MetallicGlossMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+      floats:
+        data:
+          first:
+            name: _SrcBlend
+          second: 1
+        data:
+          first:
+            name: _DstBlend
+          second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: 0.5
+        data:
+          first:
+            name: _Parallax
+          second: 0.02
+        data:
+          first:
+            name: _ZWrite
+          second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
+        data:
+          first:
+            name: _BumpScale
+          second: 1
+        data:
+          first:
+            name: _OcclusionStrength
+          second: 1
+        data:
+          first:
+            name: _DetailNormalMapScale
+          second: 1
+        data:
+          first:
+            name: _UVSec
+          second: 0
+        data:
+          first:
+            name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
+          second: 0
+      colors:
+        data:
+          first:
+            name: _EmissionColor
+          second: {r: 0, g: 0, b: 0, a: 1}
+        data:
+          first:
+            name: _Color
+          second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
     - name: enveloppe_001_Diffuse
       alphaSource: 5
@@ -277,7 +397,24 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    textureAssignments: []
+    - name: enveloppe_001_Height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 2625281341
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 2625275677
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 2625275621
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

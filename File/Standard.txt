@@ -1,0 +1,45 @@
+Shader "Standard"
+{
+    Properties
+    {
+        [LM_Albedo] [LM_Transparency] _Color("Color", Color) = (1,1,1,1)  
+        [LM_MasterTilingOffset] [LM_Albedo] _MainTex("Albedo", 2D) = "white" {}
+     
+        [LM_TransparencyCutOff] _AlphaTestRef("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
+ 
+        [LM_Glossiness] _Glossiness("Smoothness", Range(0.0, 1.0)) = 0.0
+        [LM_Metallic] _Metallic("Metallic", Range(0.0, 1.0)) = 0.0
+        [LM_Metallic] [LM_Glossiness] _MetallicGlossMap("Metallic", 2D) = "white" {}
+ 
+        _BumpScale("Scale", Float) = 1.0
+        [LM_NormalMap] _BumpMap("Normal Map", 2D) = "bump" {}
+ 
+        _Parallax ("Height Scale", Range (0.005, 0.08)) = 0.02
+        _ParallaxMap ("Height Map", 2D) = "black" {}
+ 
+        _OcclusionStrength("Strength", Range(0.0, 1.0)) = 1.0
+        _OcclusionMap("Occlusion", 2D) = "white" {}
+ 
+        [LM_Emission] _EmissionColor("Color", Color) = (0,0,0)
+        [LM_Emission] _EmissionMap("Emission", 2D) = "white" {}
+     
+        _DetailMask("Detail Mask", 2D) = "white" {}
+ 
+        _DetailAlbedoMap("Detail Albedo x2", 2D) = "grey" {}
+        _DetailNormalMapScale("Scale", Float) = 1.0
+        _DetailNormalMap("Normal Map", 2D) = "bump" {}
+ 
+        [KeywordEnum(UV1, UV2)] _UVSec ("UV Set for secondary textures", Float) = 0
+ 
+        // UI-only data
+        [KeywordEnum(None, Realtime, Baked)]  _Lightmapping ("GI", Int) = 1
+        [HideInInspector] _EmissionScaleUI("Scale", Float) = 1.0
+        [HideInInspector] _EmissionColorUI("Color", Color) = (0,0,0)
+        [HideInInspector] _EmissionColorWithMapUI("Color", Color) = (1,1,1)
+ 
+        // Blending state
+        [HideInInspector] _Mode ("__mode", Float) = 0.0
+        [HideInInspector] _SrcBlend ("__src", Float) = 1.0
+        [HideInInspector] _DstBlend ("__dst", Float) = 0.0
+        [HideInInspector] _ZWrite ("__zw", Float) = 1.0
+    }

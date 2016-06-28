@@ -222,7 +222,7 @@
 			
 			vec3 col = vec3(0.0125,0.,0.025);
 			#if 1
-			for (fixed j = 1;j<6;j++)
+			for (fixed j = 1;j<NUM_RAYS;j++)
 			{
 			    ro = bro;
 			    rd = brd;

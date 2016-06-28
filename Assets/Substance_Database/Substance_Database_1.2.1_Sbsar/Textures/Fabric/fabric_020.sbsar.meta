@@ -6,7 +6,8 @@ SubstanceImporter:
   - serializedVersion: 16
     name: fabric_020
     prototypeName: fabric_020
-    shader: {instanceID: 0}
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 5
@@ -48,21 +49,21 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Normal
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Emboss
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Light_Angle
       value:
-        scalar[0]: .125
+        scalar[0]: 0.125
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -76,14 +77,14 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Saturation
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Luminosity
       value:
-        scalar[0]: .5
+        scalar[0]: 0.5
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -104,7 +105,7 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Creases
       value:
-        scalar[0]: .300000012
+        scalar[0]: 0.3
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -132,44 +133,44 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Base_Color
       value:
-        scalar[0]: .549000025
-        scalar[1]: .0353000015
-        scalar[2]: .0979999974
+        scalar[0]: 0.549
+        scalar[1]: 0.0353
+        scalar[2]: 0.098
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Lines_Color_01
       value:
-        scalar[0]: .160799995
-        scalar[1]: .176499993
-        scalar[2]: .396100014
+        scalar[0]: 0.1608
+        scalar[1]: 0.1765
+        scalar[2]: 0.3961
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Lines_Color_02
       value:
-        scalar[0]: .0784000009
-        scalar[1]: .0784000009
-        scalar[2]: .0666999966
+        scalar[0]: 0.0784
+        scalar[1]: 0.0784
+        scalar[2]: 0.0667
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Lines_Color_03
       value:
-        scalar[0]: .631399989
-        scalar[1]: .631399989
-        scalar[2]: .627499998
+        scalar[0]: 0.6314
+        scalar[1]: 0.6314
+        scalar[2]: 0.6275
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Lines_Color_04
       value:
-        scalar[0]: .768599987
-        scalar[1]: .698000014
-        scalar[2]: .458799988
+        scalar[0]: 0.7686
+        scalar[1]: 0.698
+        scalar[2]: 0.4588
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Lines_Color_05
       value:
-        scalar[0]: .133300006
-        scalar[1]: .250999987
-        scalar[2]: .227500007
+        scalar[0]: 0.1333
+        scalar[1]: 0.251
+        scalar[2]: 0.2275
         scalar[3]: 0
         texture: {instanceID: 0}
     materialInformation:
@@ -181,9 +182,128 @@ SubstanceImporter:
       animationUpdateRate: 0
     materialProperties:
       serializedVersion: 2
-      texEnvs: {}
-      floats: {}
-      colors: {}
+      texEnvs:
+        data:
+          first:
+            name: _MainTex
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _BumpMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailNormalMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _EmissionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _ParallaxMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _OcclusionMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailMask
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _DetailAlbedoMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+        data:
+          first:
+            name: _MetallicGlossMap
+          second:
+            texture: {instanceID: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
+      floats:
+        data:
+          first:
+            name: _SrcBlend
+          second: 1
+        data:
+          first:
+            name: _DstBlend
+          second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: 0.5
+        data:
+          first:
+            name: _Parallax
+          second: 0.02
+        data:
+          first:
+            name: _ZWrite
+          second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
+        data:
+          first:
+            name: _BumpScale
+          second: 1
+        data:
+          first:
+            name: _OcclusionStrength
+          second: 1
+        data:
+          first:
+            name: _DetailNormalMapScale
+          second: 1
+        data:
+          first:
+            name: _UVSec
+          second: 0
+        data:
+          first:
+            name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
+          second: 0
+      colors:
+        data:
+          first:
+            name: _EmissionColor
+          second: {r: 0, g: 0, b: 0, a: 1}
+        data:
+          first:
+            name: _Color
+          second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
     - name: fabric_020_Diffuse
       alphaSource: 5
@@ -200,7 +320,24 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    textureAssignments: []
+    - name: fabric_020_Height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 204761530
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 204764058
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 204763746
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

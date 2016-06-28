@@ -51,6 +51,11 @@
 			vec2 fragCoord = gl_FragCoord;
 			return mainImage(gl_FragCoord);
 		}
+
+		vec4 mainImage(in vec2 fragCoord) {
+			vec4 fragColor;
+			return fragColor;
+		}
 		
 	ENDCG
 	
